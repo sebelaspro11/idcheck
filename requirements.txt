@@ -1,5 +1,4 @@
 streamlit
-json
 pandas
 pwnedpasswords
 streamlit_option_menu
