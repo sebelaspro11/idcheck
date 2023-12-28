@@ -183,9 +183,9 @@ if selected == "Password Check":
                 st.markdown("<p style='font-size: 18px;'><strong>This particular password hasn't been identified in the records of leaked passwords.</strong><br><strong>Nonetheless, consider enhancing your account security by enabling Multi-Factor Authentication (MFA) if it's available.</strong></p>", unsafe_allow_html=True)
 
 def main():
-    if selected == "Check Credential":
+    if selected == "Credential Check":
         main_credential()
-    elif selected == "Check Password":
+    elif selected == "Password Check":
         main_password()
 
 if __name__ == "__main__":
