@@ -200,7 +200,7 @@ if selected == "About":
         This web application is your shield against compromised online credentials. Stay one step ahead of data breaches – Check the security of your accounts effortlessly!
         
         ### Check Credential
-        - In February 2021, COMB (Combination Of Many Breaches), the largest dataset of leaked credentials, containing over 3.2 billion usernames and passwords from various breaches, was publicly disclosed.
+        - The largest dataset of leaked credentials, COMB (Combination Of Many Breaches) containing over billions of usernames and passwords from various breaches, was publicly disclosed in 2021.
         - This tool enables easy searching of this massive dataset, allowing individuals to check if their credentials were exposed and promoting enhanced security practices. It emphasizes the importance of changing passwords promptly and enabling two-factor authentication when available. 
         - No search records are logged or stored on the servers. 
         - Datasource: https://www.proxynova.com/
