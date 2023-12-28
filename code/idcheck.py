@@ -8,7 +8,7 @@ from streamlit_option_menu import option_menu
 
 selected = option_menu(
     menu_title=None,
-    options=["Check Credential", "Check Password", "About"],
+    options=["Credential Check", "Password Check", "About"],
     icons=["unlock", "key", "info-lg"], # https://icons.getbootstrap.com/
     orientation="horizontal",
 )
@@ -46,7 +46,7 @@ hide_streamlit_style = """
                 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-if selected == "Check Credential":
+if selected == "Credential Check":
     
     def run_curl_command(query):
         # Construct the curl command with the user input
@@ -123,7 +123,7 @@ if selected == "Check Credential":
                     # Render the DataFrame with highlighting
                     st.markdown(df_styled.to_html(escape=False), unsafe_allow_html=True)
 
-if selected == "Check Password":
+if selected == "Password Check":
     def check_password_strength(password):
         # Check character types
         uppercase_count = sum(1 for c in password if c.isupper())
