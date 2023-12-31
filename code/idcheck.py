@@ -8,8 +8,8 @@ from streamlit_option_menu import option_menu
 
 selected = option_menu(
     menu_title=None,
-    options=["Credential Check", "Password Check", "About"],
-    icons=["unlock", "key", "info-lg"], # https://icons.getbootstrap.com/
+    options=["Credential Check", "Email Check", "Password Check", "About"],
+    icons=["unlock", "envelope", "key", "info-lg"], # https://icons.getbootstrap.com/
     orientation="horizontal",
 )
 
@@ -123,6 +123,70 @@ if selected == "Credential Check":
                     # Render the DataFrame with highlighting
                     st.markdown(df_styled.to_html(escape=False), unsafe_allow_html=True)
 
+if selected == "Email Check":
+    def check_email_breaches(email):
+        
+        
+        
+        url = f'https://api.xposedornot.com/v1/check-email/{email}'
+
+        # Run the curl command
+        process = subprocess.Popen(['curl', url], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # Capture the output
+        output, error = process.communicate()
+
+        # Decode the output as UTF-8
+        output_str = output.decode('utf-8')
+
+        # Find the starting index of the JSON part
+        json_start_index = output_str.find('{"breaches":')
+
+        # Check if the JSON part is found
+        if json_start_index != -1:
+            # Extract the JSON part
+            json_str = output_str[json_start_index:]
+
+            # Attempt to decode the JSON response
+            response_data = json.loads(json_str)
+
+            # Extract and count the breaches
+            breaches = response_data.get("breaches", [])
+            breach_count = sum(len(breach) for breach in breaches)
+
+            return breach_count, breaches
+        else:
+            return 0, []
+
+    # Streamlit App
+    st.title("Email Check")
+    st.markdown(''' 
+            ### Check if your email have been compromised on any website that are participate in the data breach''')
+
+    # Initialize variables outside the form
+    breach_count, breaches = 0, []
+
+    # Using st.form to get password input and submit button
+    with st.form(key="email_form"):
+        # Get the email input from the user
+        email = st.text_input("Enter your email:")
+
+        # Add a submit button
+        submit_button = st.form_submit_button(label="Check Breaches")
+
+    # Check for breaches when the user clicks the button
+    if submit_button:
+        breach_count, breaches = check_email_breaches(email)
+        
+        if breach_count == 0:
+            st.markdown("<p style='font-size: 18px; <strong>Good, your email is not involved in any data breaches based our records.</strong></p>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<p style='font-size: 18px; '><strong>Your email have been found <strong style='color: red;'>{breach_count}</strong> <strong> times in data breaches.</strong> <strong>Please change your email password and setup Multi-Factor Authentication (MFA) if it's available.</strong></p>", unsafe_allow_html=True)
+
+            for i, breach in enumerate(breaches, start=1):
+                st.write(f"<p style='font-size: 18px;'><strong>Breach Records: <span style='color: red;'>{', '.join(breach)}</span></strong></p>", unsafe_allow_html=True)
+    
+
 if selected == "Password Check":
     def check_password_strength(password):
         # Check character types
@@ -204,6 +268,9 @@ if selected == "About":
         - This tool enables easy searching of this massive dataset, allowing individuals to check if their credentials were exposed and promoting enhanced security practices. It emphasizes the importance of changing passwords promptly and enabling two-factor authentication when available. 
         - No search records are logged or stored on the servers. 
         - Datasource: https://www.proxynova.com/
+        ### Check Email
+        - Check if your email have been compromised on any data breaches.
+        - Datasource: https://xposedornot.com/
         ### Check Password
         - Consist of hundreds of millions of real-world passwords that have been compromised in data breaches. 
         - Due to this exposure, using them for ongoing purposes poses a significantly higher risk of being exploited to compromise other accounts.
