@@ -178,7 +178,7 @@ if selected == "Password Check":
             result = pwnedpasswords.check(user_input)
             #st.write(f"Password: {user_input}")
             if result:
-                st.markdown(f"<p style='font-size: 18px;'><strong>This password has been Checked</strong> <strong style='color: red;'>{result}</strong> <strong> times.</strong> <strong>Please change your password and setup Multi-Factor Authentication (MFA) if it's available.</strong></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='font-size: 18px;'><strong>This password has been found</strong> <strong style='color: red;'>{result}</strong> <strong> times in data breaches.</strong> <strong>Please change your password and setup Multi-Factor Authentication (MFA) if it's available.</strong></p>", unsafe_allow_html=True)
             else:
                 st.markdown("<p style='font-size: 18px;'><strong>This particular password hasn't been identified in the records of leaked passwords.</strong><br><strong>Nonetheless, consider enhancing your account security by enabling Multi-Factor Authentication (MFA) if it's available.</strong></p>", unsafe_allow_html=True)
 
