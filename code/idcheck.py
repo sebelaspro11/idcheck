@@ -160,8 +160,7 @@ if selected == "Email Check":
 
     # Streamlit App
     st.title("Email Check")
-    st.markdown(''' 
-            ### Check if your email have been compromised on any website that are participate in the data breach''')
+    st.markdown('''Check if your email have been compromised on any website that are participate in the data breach''')
 
     # Initialize variables outside the form
     breach_count, breaches = 0, []
