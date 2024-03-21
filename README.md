@@ -21,7 +21,7 @@ ID Check web app
 # Installation
 
 -     git clone https://github.com/cyberraya7/idcheck.git
--     cd idchechk
+-     cd idcheck
 -     pip3 install -r requirements.txt
 
 # Usage
