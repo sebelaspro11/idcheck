@@ -16,4 +16,15 @@ ID Check web app
 - Consist of hundreds of millions of real-world passwords that have been compromised in data breaches.
 - Due to this exposure, using them for ongoing purposes poses a significantly higher risk of being exploited to compromise other accounts.
 - Check your Password strentgh
+
+
+# Installation
+
+-     git clone https://github.com/cyberraya7/idcheck.git
+-     pip3 install -r requirements.txt
+
+# Usage
+
+-     cd code
+-     streamlit run idcheck.py
         
