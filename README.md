@@ -28,4 +28,9 @@ ID Check web app
 
 -     cd code
 -     streamlit run idcheck.py
+
+# Next Step
+
+- Add module intelbase.is
+- Add social media leak data
         
